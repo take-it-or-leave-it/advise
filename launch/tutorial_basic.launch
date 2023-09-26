@@ -1,0 +1,9 @@
+<launch>
+
+<node name="basic_pub_node" pkg="advise" type="basic_pub_node" output="screen">
+</node>
+
+<node name="basic_sub_node" pkg="advise" type="basic_sub_node.py" output="screen">
+</node>
+
+</launch>

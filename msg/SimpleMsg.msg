@@ -1,0 +1,2 @@
+bool timeStamp
+string data

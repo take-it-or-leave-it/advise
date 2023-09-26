@@ -1,0 +1,9 @@
+<launch>
+
+<node name="custom_pub_node" pkg="advise" type="custom_pub_node" output="screen">
+</node>
+
+<node name="custom_sub_node" pkg="advise" type="custom_sub_node.py" output="screen">
+</node>
+
+</launch>

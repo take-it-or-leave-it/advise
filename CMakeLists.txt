@@ -48,11 +48,10 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(
+   FILES
+   SimpleMsg.msg
+)
 
 ## Generate services in the 'srv' folder
 # add_service_files(
@@ -69,10 +68,10 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   std_msgs
-# )
+generate_messages(
+   DEPENDENCIES
+   std_msgs
+ )
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -126,6 +125,12 @@ include_directories(
 #   src/${PROJECT_NAME}/advise.cpp
 # )
 
+add_executable(basic_pub_node src/tutorial/basic_pub_sub_std_msgs/basic_pub_node.cpp)
+target_link_libraries(basic_pub_node ${catkin_LIBRARIES})
+
+add_executable(custom_pub_node src/tutorial/pub_sub_custom_msgs/custom_pub_node.cpp)
+target_link_libraries(custom_pub_node ${catkin_LIBRARIES})
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure
@@ -160,10 +165,11 @@ include_directories(
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
-# catkin_install_python(PROGRAMS
-#   scripts/my_python_script
-#   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-# )
+catkin_install_python(PROGRAMS
+  src/tutorial/basic_pub_sub_std_msgs/basic_sub_node.py
+  src/tutorial/pub_sub_custom_msgs/custom_sub_node.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
