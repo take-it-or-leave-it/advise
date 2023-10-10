@@ -131,6 +131,9 @@ target_link_libraries(basic_pub_node ${catkin_LIBRARIES})
 add_executable(custom_pub_node src/tutorial/pub_sub_custom_msgs/custom_pub_node.cpp)
 target_link_libraries(custom_pub_node ${catkin_LIBRARIES})
 
+add_executable(main_app_node src/main_app.cpp)
+target_link_libraries(main_app_node ${catkin_LIBRARIES})
+
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
 ## either from message generation or dynamic reconfigure

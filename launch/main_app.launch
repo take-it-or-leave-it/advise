@@ -1,0 +1,11 @@
+<launch>
+
+<node name="recv_uart_node" pkg="advise" type="recv_uart_node" output="screen">
+</node>
+
+<node name="main_app_node" pkg="advise" type="main_app_node" output="screen">
+</node>
+
+
+
+</launch>
