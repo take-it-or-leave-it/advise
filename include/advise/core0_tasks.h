@@ -3,8 +3,14 @@
 
 #include <ros/ros.h>
 
-void Core0_5msTask();
-void Core0_10msTask();
-void Core0_30msTask();
+ros::NodeHandle n;
+ros::Publisher requestCarDetection = n.advertise<std_msgs::String>("advise/request/cardetection");
+ros::Publisher requestGPS = n.advertise<std_msgs::String>("advise/request/GPS");
+ros::Subscriber resultCarDetection = n.subscribe<mavros_msgs::State>("advise/result/cardetection", 10, state_cb);
+ros::Subscriber resultCarDetection = n.subscribe<mavros_msgs::State>("advise/result/cardetection", 10, state_cb);
+
+void Core0_5msTask(ROS::NodeHandle);
+void Core0_10msTask(ROS::NodeHandle);
+void Core0_30msTask(ROS::NodeHandle);
 
 #endif
