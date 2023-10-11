@@ -1,0 +1,11 @@
+<launch>
+
+<arg name="uart_port" default="/dev/ttyACM0"/>
+<arg name="baudrate" default=9600/>
+
+<node name="recv_uart_node" pkg="advise" type="recv_uart_node" output="screen">
+    <param name="uart_port" value="$(arg uart_port)" />
+    <param name="baudrate" value="$(arg baudrate)" />
+</node>
+
+</launch>
