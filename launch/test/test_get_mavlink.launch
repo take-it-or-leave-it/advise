@@ -1,0 +1,9 @@
+<launch>
+
+<arg name="px4_port" default="COM4"/>
+
+<node name="get_mavlink_node" pkg="advise" type="get_mavlink_node.py" output="screen">
+    <param name="px4_port" value="$(arg px4_port)" />
+</node>
+
+</launch>

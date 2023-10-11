@@ -15,17 +15,22 @@ https://github.com/garyservin/serial-example/blob/master/src/serial_example_node
 
 serial::Serial ser;
 
-int main(int argc, char **argv)
+int main()
 {
-   init(argc, argv, "recv_uart_node");
-   NodeHandle n;
+    init("recv_uart_node");
+    NodeHandle n;
+
+    string uart_port;
+    int baudrate;
+    n.param<std::string>("uart_port", uart_port,"/dev/ttyACM0");
+    n.param<std::string>("baudrate", uart_port,9600);
 
     Publisher broadCaster = n.advertise<std_msgs::String>("advise/recv_uart",1000); 
 
    try
     {
-        ser.setPort("/dev/ttyACM0");
-        ser.setBaudrate(9600);
+        ser.setPort(uart_port);
+        ser.setBaudrate(baudrate);
         serial::Timeout to = serial::Timeout::simpleTimeout(1000);
         ser.setTimeout(to);
         ser.open();
@@ -47,10 +52,9 @@ int main(int argc, char **argv)
 
       spinOnce();
       if(ser.available()){
-            ROS_INFO_STREAM("Reading from serial port");
+            
             std_msgs::String result;
             result.data = ser.read(ser.available());
-            ROS_INFO_STREAM("Read: " << result.data);
             broadCaster.publish(result);
         }
       rate.sleep();
