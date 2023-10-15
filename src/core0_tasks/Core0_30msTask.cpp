@@ -6,6 +6,7 @@ void Core0_30msTask(boost::mutex& global_mutex, FrameData& frame_data_structure)
     global_mutex.lock();
 
     //Get result of carmera detection from "FrameCarDetection" node.(by topic)
+    
 
     //parsing result 
 
