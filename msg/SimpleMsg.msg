@@ -1,2 +1,2 @@
-bool timeStamp
+time timeStamp
 string data
