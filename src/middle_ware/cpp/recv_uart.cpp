@@ -3,6 +3,7 @@
 #include <serial/serial.h>
 #include <stdio.h>
 #include <string>
+#include "advise/InfoTable.h"
 using namespace ros;
 
 /*
@@ -12,21 +13,25 @@ https://github.com/garyservin/serial-example/blob/master/src/serial_example_node
 위 코드를 참고하였음
 
 */
-
 serial::Serial ser;
+string toSend;
+void pushUART(const advise::InfoTable& data){
+    toSend = "";
+    toSend = bytes(data);
+}
 
-int main()
+int main(int argc, char **argv)
 {
-    init("recv_uart_node");
+    init(argc, argv,"recv_uart_node");
     NodeHandle n;
 
-    string uart_port;
+    std::string uart_port;
     int baudrate;
     n.param<std::string>("uart_port", uart_port,"/dev/ttyACM0");
-    n.param<std::string>("baudrate", uart_port,9600);
+    n.param<int>("baudrate", baudrate,9600);
 
     Publisher broadCaster = n.advertise<std_msgs::String>("advise/recv_uart",1000); 
-
+    Subscriber pushUART = nh.subscribe<advise::InfoTable>("advise/request/push_uart", 10, callback_pushUART);
    try
     {
         ser.setPort(uart_port);
@@ -55,6 +60,7 @@ int main()
             
             std_msgs::String result;
             result.data = ser.read(ser.available());
+            ser.write(toSend);
             broadCaster.publish(result);
         }
       rate.sleep();
