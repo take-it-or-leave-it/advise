@@ -1,0 +1,6 @@
+<launch>
+
+<node name="frame_car_detection" pkg="advise" type="frame_car_detection.py" output="screen">
+</node>
+
+</launch>

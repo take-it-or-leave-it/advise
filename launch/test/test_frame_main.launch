@@ -1,9 +1,5 @@
 <launch>
 
-<node name="recv_uart_node" pkg="advise" type="recv_uart_node" output="screen">
-</node>
-<node name="get_mavlink_node" pkg="advise" type="get_mavlink.py" output="screen">
-</node>
 <node name="frame_car_detection" pkg="advise" type="frame_car_detection.py" output="screen">
 </node>
 

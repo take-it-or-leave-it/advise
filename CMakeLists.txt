@@ -12,6 +12,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  serial
 )
 
 ## System dependencies are found with CMake's conventions
@@ -51,6 +52,10 @@ find_package(catkin REQUIRED COMPONENTS
 add_message_files(
    FILES
    SimpleMsg.msg
+   FrameCarMsg.msg
+   InfoTable.msg
+   MavlinkMsg.msg
+   PlayAudioMsg.msg
 )
 
 ## Generate services in the 'srv' folder
@@ -103,8 +108,9 @@ generate_messages(
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES advise
+ #INCLUDE_DIRS include
+ LIBRARIES advise
+ CATKIN_DEPENDS roscpp
 #  CATKIN_DEPENDS message_generation roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
@@ -116,23 +122,36 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
+  ${PROJECT_SOURCE_DIR}/include
 )
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/advise.cpp
+#   src/core0_tasks/Core0_5msTask.cpp
+#   src/core0_tasks/Core0_10msTask.cpp
+#   src/core0_tasks/Core0_30msTask.cpp
+#   src/interface/cpp/measure_distance_side.cpp
+#   src/interface/cpp/push_data_table_uart.cpp
+#   src/main_app.cpp
 # )
+# target_link_libraries(${PROJECT_NAME} ${catkin_LIBRARIES})
 
-add_executable(basic_pub_node src/tutorial/basic_pub_sub_std_msgs/basic_pub_node.cpp)
-target_link_libraries(basic_pub_node ${catkin_LIBRARIES})
 
-add_executable(custom_pub_node src/tutorial/pub_sub_custom_msgs/custom_pub_node.cpp)
-target_link_libraries(custom_pub_node ${catkin_LIBRARIES})
-
-add_executable(main_app_node src/main_app.cpp)
+#main
+add_executable(main_app_node 
+  src/core0_tasks/Core0_5msTask.cpp
+  src/core0_tasks/Core0_10msTask.cpp
+  src/core0_tasks/Core0_60msTask.cpp
+  src/interface/cpp/measure_distance_side.cpp
+  src/main_app.cpp
+)
 target_link_libraries(main_app_node ${catkin_LIBRARIES})
+
+#middle_ware
+# add_executable(recv_uart_node src/middle_ware/cpp/recv_uart.cpp)
+# target_link_libraries(recv_uart_node ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -171,6 +190,9 @@ target_link_libraries(main_app_node ${catkin_LIBRARIES})
 catkin_install_python(PROGRAMS
   src/tutorial/basic_pub_sub_std_msgs/basic_sub_node.py
   src/tutorial/pub_sub_custom_msgs/custom_sub_node.py
+  src/middle_ware/python/frame_car_detection.py
+  src/middle_ware/python/get_mavlink.py
+  src/core1_tasks/play_audio.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
@@ -189,11 +211,11 @@ catkin_install_python(PROGRAMS
 # )
 
 ## Mark cpp header files for installation
-# install(DIRECTORY include/${PROJECT_NAME}/
-#   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
-#   FILES_MATCHING PATTERN "*.h"
+ install(DIRECTORY include/${PROJECT_NAME}/
+   DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+   FILES_MATCHING PATTERN "*.h"
 #   PATTERN ".svn" EXCLUDE
-# )
+ )
 
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES

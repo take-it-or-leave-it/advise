@@ -1,0 +1,6 @@
+<launch>
+
+<node name="main_app_node" pkg="advise" type="main_app_node" output="screen">
+</node>
+
+</launch>
