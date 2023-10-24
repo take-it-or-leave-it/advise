@@ -4,67 +4,41 @@
 #include <stdio.h>
 #include <string>
 #include "advise/InfoTable.h"
+#include "advise/manager.h"
 using namespace ros;
 
-/*
-Last update : 23-10-10 19:46 / Chanbyeongee
-https://github.com/garyservin/serial-example/blob/master/src/serial_example_node.cpp
-
-위 코드를 참고하였음
-
-*/
 serial::Serial ser;
 string toSend;
 void pushUART(const advise::InfoTable& data){
-    toSend = "";
-    toSend = bytes(data);
+    ANTTransfer(data);
 }
 
 int main(int argc, char **argv)
 {
     init(argc, argv,"recv_uart_node");
     NodeHandle n;
+    SerialComm_Init();
 
-    std::string uart_port;
-    int baudrate;
+    advise::InfoTable rx_data;
+    advise::InfoTable tx_data;
+    //ANTData_t a_data;
+    //Dilemma_t d_data;
+
     n.param<std::string>("uart_port", uart_port,"/dev/ttyACM0");
     n.param<int>("baudrate", baudrate,9600);
 
-    Publisher broadCaster = n.advertise<std_msgs::String>("advise/recv_uart",1000); 
+    Publisher broadCaster = n.advertise<std_msgs::InfoTable>("advise/recv_uart",1000); 
     Subscriber pushUART = nh.subscribe<advise::InfoTable>("advise/request/push_uart", 10, callback_pushUART);
-   try
-    {
-        ser.setPort(uart_port);
-        ser.setBaudrate(baudrate);
-        serial::Timeout to = serial::Timeout::simpleTimeout(1000);
-        ser.setTimeout(to);
-        ser.open();
-    }
-    catch (serial::IOException& e)
-    {
-        ROS_ERROR_STREAM("Unable to open port ");
-        return -1;
-    }
-    if(ser.isOpen()){
-        ROS_INFO_STREAM("Serial Port initialized");
-    }else{
-        return -1;
-    }
-
+   
     Rate rate(5);
 
-   while(ok()){
+    while(ok()){
+        ANTReceive(rx_data);
+        broadCaster.publish(rx_data);
+        
+        rate.sleep();
+        spinOnce();
+    }
 
-      spinOnce();
-      if(ser.available()){
-            
-            std_msgs::String result;
-            result.data = ser.read(ser.available());
-            ser.write(toSend);
-            broadCaster.publish(result);
-        }
-      rate.sleep();
-
-   }
    return 0;
 }
