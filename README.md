@@ -5,22 +5,26 @@
 >
 > Team leader : 서울과기대 ***박용석***<br>
 > Team member : 경희대학교  ***이병찬, 권강환, 박광명***<br> 
-> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대진대학교  ***장승민***<br>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;대진대학교  ***장승민***<br>
+
+## Video Link
+[![Video Label](http://img.youtube.com/vi/4fHBYZ_cw4c/0.jpg)](https://youtu.be/4fHBYZ_cw4c)
+
 
 ## Objective
 Development of an Accident Prevention System for Vehicle Dilemma Zones Using V2V Communication
 
 **1. Resolving Dilemma Zones at Highway Entrance Ramps**<br>
-1.1 Send safe entry signals to vehicles attempting to merge<br>
-1.2 Send driving adjustment signals to surrounding vehicles<br>
+&nbsp;&nbsp;&nbsp;1.1 Send safe entry signals to vehicles attempting to merge<br>
+&nbsp;&nbsp;&nbsp;1.2 Send driving adjustment signals to surrounding vehicles<br>
 
 **2. Resolving Dilemma Zones During Lane Changes Between Adjacent Lanes**<br>
-2.1 Send lane change signals to priority vehicles<br>
-2.2 Send lane change prohibition signals to secondary vehicles<br>
+&nbsp;&nbsp;&nbsp;2.1 Send lane change signals to priority vehicles<br>
+&nbsp;&nbsp;&nbsp;2.2 Send lane change prohibition signals to secondary vehicles<br>
 
 **3. Resolving Dilemma Zones During Lane Changes Within the Same Lane**<br>
-3.1 Send lane change signals to priority vehicles<br>
-3.2 Send lane change prohibition signals to secondary vehicles<br>
+&nbsp;&nbsp;&nbsp;3.1 Send lane change signals to priority vehicles<br>
+&nbsp;&nbsp;&nbsp;3.2 Send lane change prohibition signals to secondary vehicles<br>
 
 
 ## Solution Approach
