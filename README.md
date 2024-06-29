@@ -29,6 +29,8 @@ Development of an Accident Prevention System for Vehicle Dilemma Zones Using V2V
 
 ## Solution Approach
 
+![Untitled-1](https://github.com/take-it-or-leave-it/advise/assets/117415885/5ab15b55-e7e8-461a-b721-f9ba9c65ba1e)
+
 ### 1. Vehicle Equipment Installation
 - LiDAR
 - RADAR
@@ -54,3 +56,19 @@ Development of an Accident Prevention System for Vehicle Dilemma Zones Using V2V
 - Perform signal processing and decision-making on the Raspberry Pi board
   - Prevents signal delays that could occur when using cloud services
 - Communicate directly with other vehicles via RF antenna
+
+
+## Environments
+### Development
+#### Language
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=Python&logoColor=white"> <img src="https://img.shields.io/badge/C-A8B9CC?style=for-the-badge&logo=C&logoColor=white"> <img src="https://img.shields.io/badge/C++-231F20?style=for-the-badge&logo=c%2B%2B&logoColor=white">
+
+#### Library
+<img src="https://img.shields.io/badge/ROS-22314E?style=for-the-badge&logo=ROS&logoColor=white"> <img src="https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=Linux&logoColor=white"> <img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=for-the-badge&logo=OpenCV&logoColor=white"> <img src="https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=TensorFlow&logoColor=white"> <img src="https://img.shields.io/badge/PyTorch-EE4C2C?style=for-the-badge&logo=PyTorch&logoColor=white"><br>
+
+#### IDE
+<img src="https://img.shields.io/badge/Visual Studio Code-007ACC?style=for-the-badge&logo=Visual Studio Code&logoColor=white"> <img src="https://img.shields.io/badge/Atom-66595C?style=for-the-badge&logo=Atom&logoColor=white"><br>
+
+
+#### Communication
+<img src="https://img.shields.io/badge/Github-181717?style=for-the-badge&logo=Github&logoColor=white"> <img src="https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white"> <img src="https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=Slack&logoColor=white">
